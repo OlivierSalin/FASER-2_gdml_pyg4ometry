@@ -16,5 +16,5 @@ $ docker pull sboogert/pyg4ometry-ubuntu20:latest
 ```
 $ docker run -ti sboogert/pyg4ometry-ubuntu20:latest
 ```
-* run the python functions in /tmp/pyg4ometry/src
+* Run the python functions in /tmp/pyg4ometry/src
 
