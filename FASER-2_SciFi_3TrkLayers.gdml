@@ -1,0 +1,128 @@
+<?xml version="1.0" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+	<define>
+		<constant name="d_hor_vert" value="100"/>
+		<constant name="d_layers" value="500"/>
+		<constant name="d1_ds" value="7500"/>
+		<constant name="d1_us" value="17000"/>
+		<constant name="twopi" value="2.0*pi"/>
+		<constant name="halfpi" value="0.5*pi"/>
+		<constant name="offset_angle" value="10"/>
+		<constant name="safety" value="0.001000000000000"/>
+		<constant name="bx" value="3500"/>
+		<constant name="by" value="1500"/>
+		<constant name="bz" value="40"/>
+	</define>
+	<materials>
+		<element name="carbon" formula="C" Z="6">
+			<atom value="12.0096"/>
+		</element>
+		<element name="hydrogen" formula="H" Z="1">
+			<atom value="1.008"/>
+		</element>
+		<material name="Core">
+			<D value="1.05"/>
+			<fraction ref="carbon" n="0.923"/>
+			<fraction ref="hydrogen" n="0.077"/>
+		</material>
+		<element name="oxygen" formula="O" Z="8">
+			<atom value="16.0"/>
+		</element>
+		<material name="Innerm">
+			<D value="1.19"/>
+			<fraction ref="oxygen" n="0.6059"/>
+			<fraction ref="carbon" n="0.3142"/>
+			<fraction ref="hydrogen" n="0.0799"/>
+		</material>
+		<element name="fluor" formula="F" Z="9">
+			<atom value="19.0"/>
+		</element>
+		<material name="Outerm">
+			<D value="1.43"/>
+			<fraction ref="fluor" n="0.6628"/>
+			<fraction ref="carbon" n="0.2791"/>
+			<fraction ref="hydrogen" n="0.0581"/>
+		</material>
+		<material name="Scifiber">
+			<D value="1.18"/>
+			<fraction ref="Core" n="0.7744"/>
+			<fraction ref="Innerm" n="0.1092"/>
+			<fraction ref="Outerm" n="0.1164"/>
+		</material>
+	</materials>
+	<solids>
+		<box name="world_solid" x="100000" y="100000" z="100000" lunit="mm"/>
+		<box name="SciFi_Trk" x="bx" y="by" z="bz" lunit="mm"/>
+	</solids>
+	<structure>
+		<volume name="SciFiLv">
+			<materialref ref="Scifiber"/>
+			<solidref ref="SciFi_Trk"/>
+		</volume>
+		<volume name="worldLV">
+			<materialref ref="G4_Galactic"/>
+			<solidref ref="world_solid"/>
+			<physvol name="SciFi_Trk_ds_vertPV0">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_ds_vertPV0_pos" x="0.000000000000000" y="0.000000000000000" z="(d1_ds) + ((d_layers) * (0.000000000000000))" unit="mm"/>
+			</physvol>
+			<physvol name="SciFi_Trk_ds_horizPV0">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_ds_horizPV0_pos" x="0.000000000000000" y="0.000000000000000" z="((d1_ds) + ((d_layers) * (0.000000000000000))) + (d_hor_vert)" unit="mm"/>
+				<rotation name="SciFi_Trk_ds_horizPV0_rot" x="0.000000000000000" y="1.570796326794897" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_ds_vertPV1">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_ds_vertPV1_pos" x="0.000000000000000" y="0.000000000000000" z="(d1_ds) + ((d_layers) * (1.000000000000000))" unit="mm"/>
+				<rotation name="SciFi_Trk_ds_vertPV1_rot" x="0.000000000000000" y="0.017453292519943" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_ds_horizPV1">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_ds_horizPV1_pos" x="0.000000000000000" y="0.000000000000000" z="((d1_ds) + ((d_layers) * (1.000000000000000))) + (d_hor_vert)" unit="mm"/>
+				<rotation name="SciFi_Trk_ds_horizPV1_rot" x="0.000000000000000" y="1.570796326794897" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_ds_vertPV2">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_ds_vertPV2_pos" x="0.000000000000000" y="0.000000000000000" z="(d1_ds) + ((d_layers) * (2.000000000000000))" unit="mm"/>
+				<rotation name="SciFi_Trk_ds_vertPV2_rot" x="0.000000000000000" y="0.034906585039887" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_ds_horizPV2">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_ds_horizPV2_pos" x="0.000000000000000" y="0.000000000000000" z="((d1_ds) + ((d_layers) * (2.000000000000000))) + (d_hor_vert)" unit="mm"/>
+				<rotation name="SciFi_Trk_ds_horizPV2_rot" x="0.000000000000000" y="1.570796326794897" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_us_vertPV0">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_us_vertPV0_pos" x="0.000000000000000" y="0.000000000000000" z="(d1_us) + ((d_layers) * (0.000000000000000))" unit="mm"/>
+			</physvol>
+			<physvol name="SciFi_Trk_us_horizPV0">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_us_horizPV0_pos" x="0.000000000000000" y="0.000000000000000" z="((d1_ds) + ((d_layers) * (0.000000000000000))) + (d_hor_vert)" unit="mm"/>
+				<rotation name="SciFi_Trk_us_horizPV0_rot" x="0.000000000000000" y="1.570796326794897" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_us_vertPV1">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_us_vertPV1_pos" x="0.000000000000000" y="0.000000000000000" z="(d1_us) + ((d_layers) * (1.000000000000000))" unit="mm"/>
+				<rotation name="SciFi_Trk_us_vertPV1_rot" x="0.000000000000000" y="0.017453292519943" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_us_horizPV1">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_us_horizPV1_pos" x="0.000000000000000" y="0.000000000000000" z="((d1_ds) + ((d_layers) * (1.000000000000000))) + (d_hor_vert)" unit="mm"/>
+				<rotation name="SciFi_Trk_us_horizPV1_rot" x="0.000000000000000" y="1.570796326794897" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_us_vertPV2">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_us_vertPV2_pos" x="0.000000000000000" y="0.000000000000000" z="(d1_us) + ((d_layers) * (2.000000000000000))" unit="mm"/>
+				<rotation name="SciFi_Trk_us_vertPV2_rot" x="0.000000000000000" y="0.034906585039887" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="SciFi_Trk_us_horizPV2">
+				<volumeref ref="SciFiLv"/>
+				<position name="SciFi_Trk_us_horizPV2_pos" x="0.000000000000000" y="0.000000000000000" z="((d1_ds) + ((d_layers) * (2.000000000000000))) + (d_hor_vert)" unit="mm"/>
+				<rotation name="SciFi_Trk_us_horizPV2_rot" x="0.000000000000000" y="1.570796326794897" z="0.000000000000000" unit="rad"/>
+			</physvol>
+		</volume>
+	</structure>
+	<setup name="Default" version="1.0">
+		<world ref="worldLV"/>
+	</setup>
+</gdml>
