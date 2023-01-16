@@ -6,9 +6,9 @@ The gdml filed are created using [pyg4ometry](http://www.pp.rhul.ac.uk/bdsim/pyg
 
 ## Install pyg4ometry
 Using Docker (Tested on Windows without visualisation)
-*Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
-*Open a terminal (linux) or cmd (windows)
-*Download the [pre-built image from Stewart Boogert](https://hub.docker.com/r/sboogert/pyg4ometry-ubuntu20/tags)
+* Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+* Open a terminal (linux) or cmd (windows)
+* Download the [pre-built image from Stewart Boogert](https://hub.docker.com/r/sboogert/pyg4ometry-ubuntu20/tags)
 ```
 $ docker pull sboogert/pyg4ometry-ubuntu20:latest
 ```
@@ -16,5 +16,5 @@ $ docker pull sboogert/pyg4ometry-ubuntu20:latest
 ```
 $ docker run -ti sboogert/pyg4ometry-ubuntu20:latest
 ```
-*run the python functions in /tmp/pyg4ometry/src
+* run the python functions in /tmp/pyg4ometry/src
 
