@@ -2,7 +2,7 @@
 
 This repository contains FASER-2 geometries in a gdml format with several different configurations.
 
-Those geometries are focused on the SciFi trackers layers with a different numbers of layers and material based on Sune Jakobsen estimation.
+Those geometries are focused on the SciFi trackers layers with a different numbers of layers and material based on Sune Jakobsen estimation.\
 The gdml filed are created using [pyg4ometry](http://www.pp.rhul.ac.uk/bdsim/pyg4ometry/)
 
 ## Install pyg4ometry
@@ -18,7 +18,7 @@ $ docker pull sboogert/pyg4ometry-ubuntu20:latest
 $ docker run -ti sboogert/pyg4ometry-ubuntu20:latest
 ```
 * Run the python functions in /tmp/pyg4ometry/src \
-(With those step visualisation not working and segment fault if function ask for visualisation)
+*With those step visualisation not working and segment fault if function ask for visualisation*
 
 ### To have a container with visualistion
 * Download VNC (I use RealVNC)
