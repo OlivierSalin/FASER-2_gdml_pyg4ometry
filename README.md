@@ -18,7 +18,7 @@ $ docker pull sboogert/pyg4ometry-ubuntu20:latest
 $ docker run -ti sboogert/pyg4ometry-ubuntu20:latest
 ```
 * Run the python functions in /tmp/pyg4ometry/src \
-*With those step visualisation not working and segment fault if function ask for visualisation*
+*With those step --> visualisation not working and risk of "segment fault" if function ask for visualisation*
 
 ### To have a container with visualistion
 * Download VNC (I use RealVNC)
