@@ -1,0 +1,132 @@
+<?xml version="1.0" ?>
+<gdml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://service-spi.web.cern.ch/service-spi/app/releases/GDML/schema/gdml.xsd">
+	<define>
+		<constant name="d_hor_vert" value="100"/>
+		<constant name="d_layers" value="500"/>
+		<constant name="d_stream" value="6500"/>
+		<constant name="d1_us" value="7500"/>
+		<constant name="d1_ds" value="18500"/>
+		<constant name="twopi" value="2.0*pi"/>
+		<constant name="halfpi" value="0.5*pi"/>
+		<constant name="offset_angle" value="10"/>
+		<constant name="safety" value="0.001000000000000"/>
+		<constant name="bx_vert_us" value="3000"/>
+		<constant name="by_vert_us" value="1500"/>
+		<constant name="bz_vert_us" value="40"/>
+		<constant name="bx_vert_ds" value="3500"/>
+		<constant name="by_vert_ds" value="1500"/>
+		<constant name="bz_vert_ds" value="40"/>
+		<constant name="bx_hor" value="3700"/>
+		<constant name="by_hor" value="1000"/>
+		<constant name="bz_hor" value="40"/>
+		<constant name="z_mag" value="12000.000000000000000"/>
+		<constant name="coil_inner_diameter" value="2350.000000000000000"/>
+		<constant name="coil_outer_diameter" value="2710.000000000000000"/>
+		<constant name="coil_z" value="200.000000000000000"/>
+		<constant name="gap" value="1000.000000000000000"/>
+		<constant name="yoke_x" value="5000.000000000000000"/>
+		<constant name="yoke_y" value="800.000000000000000"/>
+		<constant name="yoke_z" value="4000.000000000000000"/>
+		<constant name="yoke_side_x" value="600.000000000000000"/>
+		<constant name="yoke_side_y" value="1000.000000000000000"/>
+		<constant name="yoke_side_z" value="4000.000000000000000"/>
+	</define>
+	<materials>
+		<element name="carbon" formula="C" Z="6">
+			<atom value="12.0096"/>
+		</element>
+		<element name="hydrogen" formula="H" Z="1">
+			<atom value="1.008"/>
+		</element>
+		<material name="Core">
+			<D value="1.05"/>
+			<fraction ref="carbon" n="0.923"/>
+			<fraction ref="hydrogen" n="0.077"/>
+		</material>
+		<element name="oxygen" formula="O" Z="8">
+			<atom value="16.0"/>
+		</element>
+		<material name="Innerm">
+			<D value="1.19"/>
+			<fraction ref="oxygen" n="0.6059"/>
+			<fraction ref="carbon" n="0.3142"/>
+			<fraction ref="hydrogen" n="0.0799"/>
+		</material>
+		<element name="fluor" formula="F" Z="9">
+			<atom value="19.0"/>
+		</element>
+		<material name="Outerm">
+			<D value="1.43"/>
+			<fraction ref="fluor" n="0.6628"/>
+			<fraction ref="carbon" n="0.2791"/>
+			<fraction ref="hydrogen" n="0.0581"/>
+		</material>
+		<material name="Scifiber">
+			<D value="1.18"/>
+			<fraction ref="Core" n="0.7744"/>
+			<fraction ref="Innerm" n="0.1092"/>
+			<fraction ref="Outerm" n="0.1164"/>
+		</material>
+		<material name="nbti" state="solid">
+			<D value="5.7"/>
+			<fraction ref="G4_Sn" n="0.3"/>
+			<fraction ref="G4_Nb" n="0.7"/>
+		</material>
+	</materials>
+	<solids>
+		<box name="world_solid" x="70000" y="100000" z="410000" lunit="mm"/>
+		<box name="SciFi_Trk_vert_us" x="bx_vert_us" y="by_vert_us" z="bz_vert_us" lunit="mm"/>
+		<box name="SciFi_Trk_vert_ds" x="bx_vert_ds" y="by_vert_ds" z="bz_vert_ds" lunit="mm"/>
+		<box name="SciFi_Trk_hor" x="bx_hor" y="by_hor" z="bz_hor" lunit="mm"/>
+		<tube name="coil_cylinder" rmin="0" rmax="(coil_outer_diameter) * (0.500000000000000)" z="coil_z" startphi="0" deltaphi="6.283185307179586" lunit="mm" aunit="rad"/>
+		<box name="yoke_box_main" x="yoke_x" y="yoke_y" z="yoke_z" lunit="mm"/>
+		<box name="yoke_box_side" x="yoke_side_x" y="yoke_side_y" z="yoke_side_z" lunit="mm"/>
+	</solids>
+	<structure>
+		<volume name="coil_lv">
+			<materialref ref="G4_Nb"/>
+			<solidref ref="coil_cylinder"/>
+		</volume>
+		<volume name="yoke_main_lv">
+			<materialref ref="G4_Fe"/>
+			<solidref ref="yoke_box_main"/>
+		</volume>
+		<volume name="yoke_side_lv">
+			<materialref ref="G4_Fe"/>
+			<solidref ref="yoke_box_side"/>
+		</volume>
+		<volume name="worldLV">
+			<materialref ref="G4_Galactic"/>
+			<solidref ref="world_solid"/>
+			<physvol name="coil_pv1">
+				<volumeref ref="coil_lv"/>
+				<position name="coil_pv1_pos" x="0.000000000000000" y="((gap) * (0.500000000000000)) - ((coil_z) * (0.500000000000000))" z="z_mag" unit="mm"/>
+				<rotation name="coil_pv1_rot" x="1.570796326794897" y="0.000000000000000" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="coil_pv2">
+				<volumeref ref="coil_lv"/>
+				<position name="coil_pv2_pos" x="0.000000000000000" y="((gap) * (-0.500000000000000)) + ((coil_z) * (0.500000000000000))" z="z_mag" unit="mm"/>
+				<rotation name="coil_pv2_rot" x="1.570796326794897" y="0.000000000000000" z="0.000000000000000" unit="rad"/>
+			</physvol>
+			<physvol name="yoke_main_pv1">
+				<volumeref ref="yoke_main_lv"/>
+				<position name="yoke_main_pv1_pos" x="0.000000000000000" y="((gap) + (yoke_y)) * (0.500000000000000)" z="z_mag" unit="mm"/>
+			</physvol>
+			<physvol name="yoke_main_pv2">
+				<volumeref ref="yoke_main_lv"/>
+				<position name="yoke_main_pv2_pos" x="0.000000000000000" y="((gap) + (yoke_y)) * (-0.500000000000000)" z="z_mag" unit="mm"/>
+			</physvol>
+			<physvol name="yoke_side_pv1">
+				<volumeref ref="yoke_side_lv"/>
+				<position name="yoke_side_pv1_pos" x="((yoke_x) * (0.500000000000000)) - ((yoke_side_x) * (0.500000000000000))" y="0.000000000000000" z="z_mag" unit="mm"/>
+			</physvol>
+			<physvol name="yoke_side_pv2">
+				<volumeref ref="yoke_side_lv"/>
+				<position name="yoke_side_pv2_pos" x="((yoke_x) * (-0.500000000000000)) + ((yoke_side_x) * (0.500000000000000))" y="0.000000000000000" z="z_mag" unit="mm"/>
+			</physvol>
+		</volume>
+	</structure>
+	<setup name="Default" version="1.0">
+		<world ref="worldLV"/>
+	</setup>
+</gdml>
