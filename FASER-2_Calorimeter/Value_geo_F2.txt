@@ -1,0 +1,25 @@
+Tracker
+12 trackers or 24 trackers
+
+1st Tracker upstream z=10 m
+1st Tracker dowstream z=18 m
+
+Trackers are boxes with SciFiber material similar to LHCb SciFi
+Vertical upstream : 1500 x 3000 x 40 mm 
+Vertical downstream : 1500 x 3500 x 40 mm 
+Horizontal tracker : 1000 x 3700 x 40 mm
+
+Distance_between_vertical_tracker : 500 mm
+Distance_horizontal_vertical_tracker : 100 mm
+
+Magnet
+Coil radius : 1.35 m
+Magnet z = 13m
+Length_magnet in z : 4m
+Gap : 1m
+
+Calorimeter
+Tubes radius : 40 mm
+EM_Calorimeter : 2000 x 2000 x 370 mm
+Had_Calorimeter : 2000 x 2000 x 2500 mm
+
