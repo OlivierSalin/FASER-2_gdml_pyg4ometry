@@ -1,6 +1,7 @@
 # FASER-2_gdml_pyg4ometry
 
-This repository contains FASER-2 geometries in a gdml format with several different configurations.
+This repository contains FASER-2 geometries in a gdml format with several different configurations.\
+The more complete description of FASER2 geometry is available in the files : FASER2_GDML_model.gdml, FASER-2_GDML_pyg4ometry.py
 
 Those geometries are focused on the SciFi trackers layers with a different numbers of layers and material based on Sune Jakobsen estimation.\
 The gdml filed are created using [pyg4ometry](http://www.pp.rhul.ac.uk/bdsim/pyg4ometry/)
